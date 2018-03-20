@@ -13,3 +13,4 @@ for e in board:
     for r in e:
         print(r,end=' ')
     print()
+#Man kan edita om man går in på filen på Githubs hemsida och klickar edit på Toms fil
