@@ -1,10 +1,12 @@
 
+
 import pygame
 import sys
 import time
 import pygbutton
 from pygame.locals import *
 
+#mode = input("Black or White? B/W")
 
 pygame.init()
 
@@ -13,7 +15,7 @@ WHITE = ( 255, 255, 255)
 GREEN = (72, 93, 63)
 RED = ( 255, 0, 0)
 
-size = (515, 600)
+size = (488, 570)
 
 screen = pygame.display.set_mode(size)
 
@@ -35,9 +37,15 @@ while carryOn:
         size = 60
         for y in range(0, 8):
             for x in range(0, 8):
-                rect1 = pygame.draw.rect(screen, GREEN, (x * (size + 5), y * (size + 5), size, size))
+                rect1 = pygame.draw.rect(screen, GREEN, (x * (size + 1), y * (size + 1), size, size))
 
-        square_size = size+5
+        square_size = size+1
+
+        def draw_circle(x_pos,y_pos,col):
+
+            x_pos = x_pos*size+x_pos
+            y_pos = y_pos*size+y_pos
+            pygame.draw.ellipse(screen, col, (x_pos, y_pos, size, size))
 
 
         def generate_buttons():
@@ -56,8 +64,19 @@ while carryOn:
             for y in range(0, 8):
                 if x == 4 and y == 4:
                     a = 1
+                elif x == 3 and y == 4:
+                    a = 1
+                elif x == 3 and y == 3:
+                    a = 0
+                elif x == 4 and y == 3:
+                    a = 0
                 else:
                     buttons[y][x].draw(screen)
+
+        draw_circle(4,4, WHITE)
+        draw_circle(3,3,WHITE)
+        draw_circle(3,4,BLACK)
+        draw_circle(4,3,BLACK)
         # --- Game logic should go here
 
         # --- Drawing code should go here
